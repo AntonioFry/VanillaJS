@@ -4,6 +4,7 @@ class Idea {
     this.description = description;
     this.id = id;
     this.quality = 'swill'
+    this.starred = false;
   }
 
   saveLocalStorage(allIdeas) {

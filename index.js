@@ -19,7 +19,7 @@ function renderNewIdea(idea) {
   const ideasContainer = document.querySelector('#ideas-container');
   (ideasContainer.innerHTML = `<article class="card" data-id="${idea.id}">
     <header class="idea-header">
-      <img class="fave-img" src="images/star.svg">
+      <img class="star-img" src="images/star.svg">
       <img class="delete-img" src="images/delete.svg">
     </header>
     <div class="idea-content">
@@ -40,13 +40,14 @@ function loadIdeas() {
     return
   } else {
     ideas = parsedIdeas;
+    console.log(ideas);
     parsedIdeas.map(idea => {
       return renderNewIdea(idea);
     })
   }
 }
 
-document.querySelector('#ideas-container').addEventListener('click', (e) => {
+document.querySelector('#ideas-container').addEventListener('click', function deleteCard(e) {
   if (e.target.className === "delete-img") {
     e.target.closest('.card').remove();
     let ideaIndex = getIdeaById(e);
@@ -59,4 +60,17 @@ function getIdeaById(e) {
   const targetCard = e.target.closest('.card');
   const cardId = parseInt(targetCard.getAttribute('data-id'));
   return ideas.findIndex(idea => idea.id === cardId);
+}
+
+document.querySelector('#ideas-container').addEventListener('click', function starCard(e) {
+  if (e.target.className === 'star-img') {
+    let imgSrc = e.target.parentNode.childNodes[1].src;
+    const ideaIndex = getIdeaById(e);
+    ideas[ideaIndex].starred = true;
+    localStorage.setItem('ideas', JSON.stringify(ideas));
+  }
+})
+
+function toggleStarImg(idea) {
+  
 }

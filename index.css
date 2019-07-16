@@ -1,0 +1,34 @@
+* {
+  border: 1px solid black;
+}
+
+body {
+  margin: 0px;
+  width: 100%;
+}
+
+section {
+  width: 100%;
+}
+
+#form-section {
+  display: flex;
+  height: 300px;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#ideas-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+article {
+  margin: 10px;
+}

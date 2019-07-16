@@ -36,12 +36,27 @@ function renderNewIdea(idea) {
 
 function loadIdeas() {
   const parsedIdeas = JSON.parse(localStorage.getItem('ideas'));
-  ideas = parsedIdeas;
-  parsedIdeas.map(idea => {
-    return renderNewIdea(idea);
-  })
+  if (parsedIdeas === null) {
+    return
+  } else {
+    ideas = parsedIdeas;
+    parsedIdeas.map(idea => {
+      return renderNewIdea(idea);
+    })
+  }
 }
 
-function deleteIdea(e) {
+document.querySelector('#ideas-container').addEventListener('click', (e) => {
+  if (e.target.className === "delete-img") {
+    e.target.closest('.card').remove();
+    let ideaIndex = getIdeaById(e);
+    ideas.splice(ideaIndex, 1);
+    localStorage.setItem('ideas', JSON.stringify(ideas));
+  }
+})
 
+function getIdeaById(e) {
+  const targetCard = e.target.closest('.card');
+  const cardId = parseInt(targetCard.getAttribute('data-id'));
+  return ideas.findIndex(idea => idea.id === cardId);
 }

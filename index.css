@@ -32,3 +32,49 @@ form {
 article {
   margin: 10px;
 }
+
+article {
+  padding: 0;
+  margin-bottom: 10px;
+  padding: 10px 0;
+
+}
+
+img {
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+}
+
+
+.idea-header {
+  background-color: #1F1F3D;
+  display: flex;
+  justify-content: space-between;
+  max-height: 25px;
+  padding: 0;
+  width: 100%;
+}
+
+.idea-card-title,
+.idea-card-body {
+  padding: 15px 7px 0;
+}
+
+.idea-content {
+  background-color: #fff;
+  color: #1f1f3d;
+  height: 200px;
+  margin: 0;
+}
+
+.idea-card-quality {
+  margin: 5px 0;
+}
+
+.idea-footer {
+  background-color: #5356a4;
+  display: flex;
+  justify-content: space-between;
+  min-height: 30px;
+}

@@ -23,19 +23,14 @@ function renderNewIdea(idea) {
       <img class="delete-img" src="images/delete.svg">
     </header>
     <div class="idea-content">
-      <h5 contenteditable="true" class="idea-card-title">${idea.title}</h5>
-      <p contenteditable="true" class="idea-card-body">${idea.description}</p>
+      <h4 class="idea-card-title">${idea.title}</h5>
+      <p class="idea-card-body">${idea.description}</p>
     </div>
-    <footer class="idea-footer">
-      <img class="quality-up-img" src="images/upvote.svg">
-      <h5 class="idea-card-quality">Quality:<span id="idea-card-quality">${idea.quality}</span></h5>
-      <img class="quality-down-img" src="images/downvote.svg">
-    </footer>
   </article>` + ideasContainer.innerHTML);
+  
   var dataIdKey = `[data-id = "${idea.id}"]`;
   var targetCard = document.querySelector(dataIdKey);
   targetCard.style.display = "block";
-  console.log(targetCard)
 }
 
 function loadIdeas(e) {
@@ -44,7 +39,6 @@ function loadIdeas(e) {
     return
   } else {
     ideas = parsedIdeas;
-    console.log(ideas);
     parsedIdeas.map(idea => {
       return renderNewIdea(idea);
     });
@@ -94,15 +88,11 @@ document.querySelector('#show-starred-btn')
   ideas.forEach(idea => {
     const dataIdKey = `[data-id = "${idea.id}"]`;
     const targetCard = document.querySelector(dataIdKey);
-    console.log(targetCard); 
-    if (targetCard.display === 'block' && !idea.starred) {
+    if (targetCard.style.display === 'block' && !idea.starred) {
       targetCard.style.display = 'none';
     } else if (targetCard.style.display === 'none') {
       targetCard.style.display = 'block';
     }
   })
-})
+});
 
-function qualityChange(e) {
-  
-}

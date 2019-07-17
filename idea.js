@@ -5,6 +5,7 @@ class Idea {
     this.id = id;
     this.quality = 'swill'
     this.starred = false;
+    this.starredImg = `./images/star.svg`;
   }
 
   saveLocalStorage(allIdeas) {

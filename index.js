@@ -19,7 +19,7 @@ function renderNewIdea(idea) {
   const ideasContainer = document.querySelector('#ideas-container');
   (ideasContainer.innerHTML = `<article class="card" data-id="${idea.id}">
     <header class="idea-header">
-      <img class="star-img" src="images/star.svg">
+      <img class="star-img" src=${idea.starredImg}>
       <img class="delete-img" src="images/delete.svg">
     </header>
     <div class="idea-content">
@@ -34,7 +34,7 @@ function renderNewIdea(idea) {
   </article>` + ideasContainer.innerHTML);
 }
 
-function loadIdeas() {
+function loadIdeas(e) {
   const parsedIdeas = JSON.parse(localStorage.getItem('ideas'));
   if (parsedIdeas === null) {
     return
@@ -64,13 +64,22 @@ function getIdeaById(e) {
 
 document.querySelector('#ideas-container').addEventListener('click', function starCard(e) {
   if (e.target.className === 'star-img') {
-    let imgSrc = e.target.parentNode.childNodes[1].src;
     const ideaIndex = getIdeaById(e);
-    ideas[ideaIndex].starred = true;
+    ideas[ideaIndex].starred = !ideas[ideaIndex].starred;
+    toggleStarImg(e);
     localStorage.setItem('ideas', JSON.stringify(ideas));
   }
 })
 
-function toggleStarImg(idea) {
-  
+function toggleStarImg(e) {
+  const ideaIndex = getIdeaById(e);
+  const targetIdea = ideas[ideaIndex];
+  if (targetIdea.starred === true) {
+    targetIdea.starredImg = 'images/star-active.svg';
+    e.target.src = 'images/star-active.svg';
+  } else {
+    targetIdea.starredImg = 'images/star.svg';
+    e.target.src = 'images/star.svg';
+  }
 }
+

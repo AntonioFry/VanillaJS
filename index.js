@@ -32,6 +32,10 @@ function renderNewIdea(idea) {
       <img class="quality-down-img" src="images/downvote.svg">
     </footer>
   </article>` + ideasContainer.innerHTML);
+  var dataIdKey = `[data-id = "${idea.id}"]`;
+  var targetCard = document.querySelector(dataIdKey);
+  targetCard.style.display = "block";
+  console.log(targetCard)
 }
 
 function loadIdeas(e) {
@@ -43,11 +47,12 @@ function loadIdeas(e) {
     console.log(ideas);
     parsedIdeas.map(idea => {
       return renderNewIdea(idea);
-    })
+    });
   }
 }
 
-document.querySelector('#ideas-container').addEventListener('click', function deleteCard(e) {
+document.querySelector('#ideas-container')
+.addEventListener('click', function deleteCard(e) {
   if (e.target.className === "delete-img") {
     e.target.closest('.card').remove();
     let ideaIndex = getIdeaById(e);
@@ -62,7 +67,8 @@ function getIdeaById(e) {
   return ideas.findIndex(idea => idea.id === cardId);
 }
 
-document.querySelector('#ideas-container').addEventListener('click', function starCard(e) {
+document.querySelector('#ideas-container')
+.addEventListener('click', function starCard(e) {
   if (e.target.className === 'star-img') {
     const ideaIndex = getIdeaById(e);
     ideas[ideaIndex].starred = !ideas[ideaIndex].starred;
@@ -81,5 +87,22 @@ function toggleStarImg(e) {
     targetIdea.starredImg = 'images/star.svg';
     e.target.src = 'images/star.svg';
   }
-}
+} 
 
+document.querySelector('#show-starred-btn')
+.addEventListener('click', function filterStarred() {
+  ideas.forEach(idea => {
+    const dataIdKey = `[data-id = "${idea.id}"]`;
+    const targetCard = document.querySelector(dataIdKey);
+    console.log(targetCard); 
+    if (targetCard.display === 'block' && !idea.starred) {
+      targetCard.style.display = 'none';
+    } else if (targetCard.style.display === 'none') {
+      targetCard.style.display = 'block';
+    }
+  })
+})
+
+function qualityChange(e) {
+  
+}

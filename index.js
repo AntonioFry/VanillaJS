@@ -8,11 +8,17 @@ window.addEventListener('load', loadIdeas);
 function addIdea(e) {
   e.preventDefault();
   const titleInput = document.querySelector('#title-input');
-  const descriptionInput = document.querySelector('#description-input')
+  const descriptionInput = document.querySelector('#description-input');
   const newIdea = new Idea(titleInput.value, descriptionInput.value, Date.now());
+  emptyInputs(titleInput, descriptionInput);
   ideas.push(newIdea);
   newIdea.saveLocalStorage(ideas);
   renderNewIdea(newIdea);
+}
+
+function emptyInputs(titleInput, descriptionInput) {
+  titleInput.value = '';
+  descriptionInput.value = '';
 }
 
 function renderNewIdea(idea) {

@@ -73,7 +73,7 @@ img {
 
 
 .idea-header {
-  background-color: black;
+  background-color: black ;
   display: flex;
   justify-content: space-between;
   max-height: 25px;
@@ -92,4 +92,12 @@ img {
   color: #1f1f3d;
   height: 200px;
   margin: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  
+  #ideas-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
 }
